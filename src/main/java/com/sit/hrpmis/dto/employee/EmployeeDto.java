@@ -1,8 +1,10 @@
 package com.sit.hrpmis.dto.employee;
 
-import java.util.Date;
+import lombok.Data;
 
-public class Employee {
+import java.util.Date;
+@Data
+public class EmployeeDto {
 
     private Long employeeNo;
 

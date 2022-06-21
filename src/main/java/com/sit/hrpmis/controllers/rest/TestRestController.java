@@ -1,7 +1,10 @@
 package com.sit.hrpmis.controllers.rest;
 
 
+import com.sit.hrpmis.dto.employee.EmployeeDto;
 import com.sit.hrpmis.dto.response.CommonResponse;
+import com.sit.hrpmis.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -15,11 +18,12 @@ import java.net.URISyntaxException;
 @RestController
 @RequestMapping(value = "/hrmis/rest-api")
 public class TestRestController {
-
+   @Autowired
+    EmployeeService employeeService;
     @RequestMapping(value = "test-get", method = RequestMethod.GET)
-    public ResponseEntity<CommonResponse> authenticateUser(  ) {
+    public ResponseEntity<EmployeeDto> authenticateUser(  ) {
 
-      return new ResponseEntity(new CommonResponse(), HttpStatus.OK);
+      return new ResponseEntity(employeeService.getEmployeeList(), HttpStatus.OK);
 
     }
 
