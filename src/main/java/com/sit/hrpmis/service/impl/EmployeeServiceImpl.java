@@ -1,6 +1,7 @@
 package com.sit.hrpmis.service.impl;
 
 import com.sit.hrpmis.dto.employee.EmployeeDto;
+import com.sit.hrpmis.dto.response.CommonResponse;
 import com.sit.hrpmis.model.employee.Employee;
 import com.sit.hrpmis.repository.employee.EmployeeRepository;
 import com.sit.hrpmis.service.EmployeeService;
@@ -20,6 +21,10 @@ public class EmployeeServiceImpl  implements EmployeeService {
     @Override
     public List<EmployeeDto> getEmployeeList() {
         return ConvertToList(employeeRepository.findAll());
+    }
+    @Override
+    public List<Employee > getEmployees() {
+        return  employeeRepository.findAll();
     }
 
     private List<EmployeeDto> ConvertToList(List<Employee> employees) {
@@ -42,5 +47,19 @@ public class EmployeeServiceImpl  implements EmployeeService {
     @Override
     public EmployeeDto getEmployeeNo(Long employeeNo) {
         return null;
+    }
+
+    @Override
+    public CommonResponse saveEmployee(Employee  employee ) {
+        CommonResponse commonResponse =new CommonResponse();
+
+        employeeRepository.save(employee);
+        commonResponse.setResponseMsg("Saved successfully");
+        return commonResponse;
+    }
+
+    private Employee convertDtoToModel(EmployeeDto employeeDto) {
+
+        return  null;
     }
 }

@@ -3,6 +3,7 @@ package com.sit.hrpmis.controllers.rest;
 
 import com.sit.hrpmis.dto.employee.EmployeeDto;
 import com.sit.hrpmis.dto.response.CommonResponse;
+import com.sit.hrpmis.model.employee.Employee;
 import com.sit.hrpmis.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +24,18 @@ public class TestRestController {
       return new ResponseEntity(employeeService.getEmployeeList(), HttpStatus.OK);
 
     }
+    @RequestMapping(value = "test-get-emp", method = RequestMethod.GET)
+    public ResponseEntity<Employee> getEMployeeList(  ) {
+
+      return new ResponseEntity(employeeService.getEmployees(), HttpStatus.OK);
+
+    }
 
     @RequestMapping(value = "test-save", method = RequestMethod.POST)
-    public ResponseEntity<CommonResponse> SaveEMployee(   @RequestBody  EmployeeDto employeeDto
+    public ResponseEntity<CommonResponse> SaveEMployee(   @RequestBody  Employee  employee
     ) {
 
-        return new ResponseEntity(new CommonResponse(), HttpStatus.OK);
+        return new ResponseEntity(employeeService.saveEmployee(employee ), HttpStatus.OK);
 
     }
 
