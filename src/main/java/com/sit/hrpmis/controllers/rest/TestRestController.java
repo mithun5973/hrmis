@@ -7,10 +7,7 @@ import com.sit.hrpmis.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URISyntaxException;
@@ -26,6 +23,15 @@ public class TestRestController {
       return new ResponseEntity(employeeService.getEmployeeList(), HttpStatus.OK);
 
     }
+
+    @RequestMapping(value = "test-save", method = RequestMethod.POST)
+    public ResponseEntity<CommonResponse> SaveEMployee(   @RequestBody  EmployeeDto employeeDto
+    ) {
+
+        return new ResponseEntity(new CommonResponse(), HttpStatus.OK);
+
+    }
+
 
 //    @RequestMapping(value = PATH_ALL_JBC_OFFICE_API, method = RequestMethod.GET)
 //    public ResponseEntity<OfficeListAPIResponse> getAllJBCOfficeList (HttpServletRequest request,
